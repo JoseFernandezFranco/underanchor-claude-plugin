@@ -1,7 +1,7 @@
 {
   "name": "underanchor",
   "displayName": "Underanchor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write LaTeX with every claim anchored to the exact paragraph of your source PDFs. Search your own Underanchor library, cite with a link to the highlighted paragraph, flag unsupported sentences and get a draft ready for your supervisor.",
   "author": {
     "name": "Underanchor",
@@ -10,6 +10,9 @@
   },
   "homepage": "https://underanchor.com",
   "privacyPolicyUrl": "https://underanchor.com/legal/en/privacidad",
+  "termsOfServiceUrl": "https://underanchor.com/legal/en/terminos",
+  "documentationUrl": "https://underanchor.com/docs/connect-ai/",
+  "supportUrl": "https://underanchor.com/about/",
   "repository": "https://github.com/JoseFernandezFranco/underanchor-claude-plugin",
   "license": "MIT",
   "keywords": [
