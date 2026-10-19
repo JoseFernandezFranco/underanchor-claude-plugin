@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "underanchor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Write LaTeX with every claim anchored to the exact paragraph of your source PDFs. Search your own Underanchor library, cite with a link to the highlighted paragraph, flag unsupported sentences and get a draft ready for your supervisor.",
   "author": {
     "name": "Underanchor",
