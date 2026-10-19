@@ -1,0 +1,17 @@
+{
+  "name": "underanchor",
+  "owner": {
+    "name": "Underanchor",
+    "email": "contacto@underanchor.com"
+  },
+  "metadata": {
+    "description": "The Underanchor plugin: source-anchored LaTeX writing with your own AI."
+  },
+  "plugins": [
+    {
+      "name": "underanchor",
+      "source": "./",
+      "description": "Write LaTeX with every claim anchored to the exact paragraph of your source PDFs."
+    }
+  ]
+}

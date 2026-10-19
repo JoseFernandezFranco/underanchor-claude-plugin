@@ -1,0 +1,25 @@
+{
+  "name": "underanchor",
+  "displayName": "Underanchor",
+  "version": "1.0.0",
+  "description": "Write LaTeX with every claim anchored to the exact paragraph of your source PDFs. Search your own Underanchor library, cite with a link to the highlighted paragraph, flag unsupported sentences and get a draft ready for your supervisor.",
+  "author": {
+    "name": "Underanchor",
+    "email": "contacto@underanchor.com",
+    "url": "https://underanchor.com"
+  },
+  "homepage": "https://underanchor.com",
+  "repository": "https://github.com/JoseFernandezFranco/underanchor-claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "citations",
+    "sources",
+    "pdf",
+    "latex",
+    "academic-writing",
+    "thesis",
+    "references",
+    "provenance",
+    "research"
+  ]
+}

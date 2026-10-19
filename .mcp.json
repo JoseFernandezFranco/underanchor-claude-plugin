@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "underanchor": {
+      "type": "http",
+      "url": "https://underanchor.com/mcp"
+    }
+  }
+}

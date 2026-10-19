@@ -1,0 +1,107 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "underanchor",
+  "version": "1.0.0",
+  "description": "Write LaTeX with every claim anchored to the exact paragraph of your source PDFs. Search your own Underanchor library, cite with a link to the highlighted paragraph, flag unsupported sentences and get a draft ready for your supervisor.",
+  "author": {
+    "name": "Underanchor",
+    "email": "contacto@underanchor.com",
+    "url": "https://underanchor.com"
+  },
+  "homepage": "https://underanchor.com",
+  "repository": "https://github.com/JoseFernandezFranco/underanchor-claude-plugin",
+  "license": "MIT",
+  "keywords": ["citations", "sources", "pdf", "latex", "academic-writing", "thesis", "references", "provenance", "research"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Underanchor",
+        "shortDescription": "Anchor every claim to its PDF",
+        "longDescription": "Underanchor is a LaTeX editor where every sentence is anchored to the exact paragraph of the source PDF it comes from. This plugin connects ChatGPT to your own Underanchor library and projects.\n\nWhat it does:\n- Searches the PDFs you uploaded to Underanchor and returns the paragraphs that answer your question, each with its page and a \"view paragraph\" link that opens the PDF with that paragraph highlighted.\n- Reads full paragraphs, formulas and tables, paper outlines and your own highlights and notes.\n- With read-and-write permission, drafts in your LaTeX project citing only your library: each factual sentence is anchored to a paragraph, and sentences without support are marked [SIN FUENTE] (\"no source\") instead of being filled in.\n- Lists the sentences of a draft that have no source, leaves comments and proposes changes that you accept or reject in Underanchor.\n- Explains how to do things in the app (upload PDFs, compile, share with a supervisor) with the on-screen labels.\n\nWho it is for: PhD students, researchers and supervisors who write or review LaTeX documents and need every claim to be traceable to a source.\n\nLimitations: it only sees the Underanchor account you sign in with and only cites PDFs you have uploaded there; it does not search the web, upload PDFs, compile documents or share projects (you do that in the app). An anchor shows where a sentence comes from, not that the sentence is true. Underanchor does not run any AI model of its own.",
+        "developerName": "Underanchor",
+        "category": "Productivity",
+        "capabilities": [
+          "Search your PDF library",
+          "Read and cite paragraphs with links",
+          "Draft with anchored citations",
+          "Flag sentences without a source",
+          "Comment and propose changes"
+        ],
+        "websiteURL": "https://underanchor.com",
+        "supportURL": "https://underanchor.com/legal/en/aviso",
+        "privacyPolicyURL": "https://underanchor.com/legal/en/privacidad",
+        "termsOfServiceURL": "https://underanchor.com/legal/en/terminos",
+        "defaultPrompt": [
+          "What do my sources say about low emission zones and NO2? Cite the paragraphs.",
+          "Which sentences in my draft have no source?",
+          "Draft the related-work section citing only my library."
+        ],
+        "brandColor": "#1F1D1A",
+        "brandColorDark": "#F1D97A",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Answer from the user's library with cited paragraphs",
+              "prompt": "In my Underanchor project 'ejemplo', what do my sources say about low emission zones and nitrogen dioxide? Cite the paragraphs.",
+              "tools_triggered": "search_corpus",
+              "expected_behavior": "Answers only from paragraphs of the example library (the article on low emission zones and NO2), giving the article key and page and a \"view paragraph\" link for each citation. No outside sources."
+            },
+            {
+              "description": "List sentences without a source",
+              "prompt": "Which sentences in my project 'ejemplo' have no source?",
+              "tools_triggered": "list_projects, check_unsourced",
+              "expected_behavior": "Lists the sentences of the example project that are not anchored (the ones about road traffic and nitrogen oxides and about bike sharing), without changing the document."
+            },
+            {
+              "description": "Find support and propose an anchored change",
+              "prompt": "In my project 'ejemplo', find a source in my library for the sentence about road traffic and nitrogen oxide emissions and propose the change.",
+              "tools_triggered": "read_project, search_corpus, propose_change",
+              "expected_behavior": "Searches the project's library and, if a paragraph supports the sentence, creates a proposal with that paragraph's chunk_id that the user can accept in Underanchor; if none supports it, says so and keeps the sentence marked [SIN FUENTE]. The document itself is not modified."
+            },
+            {
+              "description": "List the articles of a library",
+              "prompt": "Which articles are in my library 'Ejemplo · Calidad del aire y movilidad'?",
+              "tools_triggered": "list_papers",
+              "expected_behavior": "Lists the four example articles with title, authors and year."
+            },
+            {
+              "description": "Explain how to share with a supervisor",
+              "prompt": "How do I invite my supervisor to review my project in Underanchor?",
+              "tools_triggered": "get_help",
+              "expected_behavior": "Gives the steps from the help page with the on-screen labels (Share, Role: Review, Invite) and does not call any write tool."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Cite from the model's own knowledge",
+              "prompt": "Write the introduction of my thesis on air pollution citing any papers you know."
+            },
+            {
+              "description": "Delete the user's PDFs",
+              "prompt": "Delete all the PDFs in my Underanchor library."
+            },
+            {
+              "description": "Fetch papers from the web into the library",
+              "prompt": "Search the web for the latest papers on NO2 and add them to my Underanchor library."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "First release: search and cite your Underanchor library, anchored drafting, source audit and a pre-review checklist.",
+        "translations": {
+          "es-ES": {
+            "subtitle": "Ancla cada afirmación a su PDF",
+            "description": "Underanchor es un editor LaTeX donde cada frase queda anclada al párrafo exacto del PDF del que sale. Este plugin conecta ChatGPT con tu biblioteca y tus proyectos de Underanchor: busca en los PDF que has subido y devuelve los párrafos que responden, cada uno con su página y un enlace «ver párrafo» que abre el PDF con ese párrafo resaltado; lee párrafos completos, fórmulas, tablas y tus subrayados y notas; con permiso de lectura y escritura, redacta en tu proyecto citando solo tu biblioteca y marca [SIN FUENTE] lo que no tiene apoyo; lista las frases sin fuente, comenta y propone cambios que aceptas o rechazas en Underanchor.\n\nPara doctorandos, investigadores y tutores que escriben o revisan documentos LaTeX.\n\nLímites: solo ve la cuenta de Underanchor con la que entras y solo cita PDF que hayas subido; no busca en internet, no sube PDF, no compila ni comparte (eso se hace en la app). Un anclaje muestra de dónde sale una frase, no que sea cierta. Underanchor no usa ningún modelo de IA propio."
+          }
+        }
+      }
+    }
+  }
+}
