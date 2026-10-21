@@ -22,7 +22,7 @@ tools and the working method.
 | Part | What it does |
 |---|---|
 | Connector `underanchor` (`.mcp.json`) | Remote MCP server at `https://underanchor.com/mcp`, signed in with OAuth. |
-| Skill `anchored-writing` | Drafts or rewrites text citing only your library; each factual sentence is anchored to a paragraph, and unsupported ones are written with `[SIN FUENTE]` ("no source"). |
+| Skill `anchored-writing` | Drafts or rewrites text citing only your library; each factual sentence is anchored to a paragraph, and claims the library cannot support are left out and reported in the chat. |
 | Skill `source-audit` | Checks a draft sentence by sentence: supported, partly supported, without support, broken anchor; proposes fixes you accept in the app. |
 | Skill `supervisor-ready` | Gets a document ready for your supervisor or reviewer: no silent gaps, broken anchors fixed, open comments answered, and the steps to share it. |
 

@@ -20,10 +20,10 @@ in the user's library that says it? Report first; change the document only if th
 ## Steps
 
 1. **Run the checker.** `check_unsourced(project_name)` returns every sentence of the body
-   with no valid anchor and no `[SIN FUENTE]` marker, with its byte offsets and a `reason`:
+   with no valid anchor and no legacy `[SIN FUENTE]` marker, with its byte offsets and a `reason`:
    `sin_anclaje` (never anchored) or `anclaje_roto` (the anchored paragraph no longer exists,
    for example because the PDF was deleted). An empty list means every sentence is anchored or
-   declared `[SIN FUENTE]`; it does not mean every anchor is right, so continue.
+   carries a legacy `[SIN FUENTE]` marker; it does not mean every anchor is right, so continue.
 2. **Look for support for each flagged sentence.** Call
    `search_corpus(query, project=project_name)` with two or three phrasings (English terms
    work best for English PDFs). Read the paragraph, with `get_chunk(chunk_id, context=false)`
@@ -37,8 +37,8 @@ in the user's library that says it? Report first; change the document only if th
    - **Partly supported**: the paragraph says something narrower or different (another number,
      place, year or population). Say what differs and propose a wording that matches.
    - **No support in the library**: nothing found after several phrasings. Suggest the kind of
-     source that would support it; the sentence should carry `[SIN FUENTE]` until one is
-     uploaded.
+     source that would support it; the sentence is better removed (or
+     rewritten) until one is uploaded.
    - **Not a factual claim**: signposting or the authors' own aims ("Section 3 describes…").
      These need no source; Underanchor accepts a line `% anclaje:exempt <reason>` just before
      such a sentence. Propose it, do not add it without the user's agreement.

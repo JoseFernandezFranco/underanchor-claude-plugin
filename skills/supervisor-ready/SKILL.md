@@ -17,10 +17,10 @@ Work through it in order and keep a running list for the final summary.
 1. **Read the project.** `list_projects`, then `read_project(project_name)`: text, `anchors`
    and `comments`. A project shared with the user uses the address `<owner email>/<project>`.
 2. **No silent gaps.** Run `check_unsourced(project_name)`. Every sentence it returns needs one
-   of: an anchor (see the `anchored-writing` skill), the `[SIN FUENTE]` marker, or, if it is not
+   of: an anchor (see the `anchored-writing` skill), a legacy `[SIN FUENTE]` marker from an older draft, or, if it is not
    a factual claim, an exempt line proposed to the user. The goal is an empty list.
-3. **Declared gaps.** Count the `[SIN FUENTE]` markers in the text and list them. They are
-   honest and the reviewer will see them; ask the user whether to look for sources now
+3. **Declared gaps.** Count the legacy `[SIN FUENTE]` markers in the text and list them (new
+   drafts do not get any: unsupported claims are left out). The reviewer will see them; ask the user whether to look for sources now
    (`search_corpus` with `project=project_name`) or to leave them for the reviewer.
 4. **Broken anchors.** Sentences that `check_unsourced` returns with `reason` `anclaje_roto`
    are anchored to a paragraph that no longer resolves (for example, its PDF was deleted).
@@ -41,7 +41,7 @@ Work through it in order and keep a running list for the final summary.
 
 ## Summary for the user
 
-Report: sentences anchored, `[SIN FUENTE]` left (with where), broken anchors fixed, comments
+Report: sentences anchored, legacy `[SIN FUENTE]` left (with where), broken anchors fixed, comments
 resolved or answered, keys without a paper. Offer a two-line note the user can send to the
 reviewer with what is still open.
 

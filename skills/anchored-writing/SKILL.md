@@ -14,10 +14,9 @@ anchor, and to mark honestly what the library does not support.
 1. **Cite only from the library.** Every factual claim must come from a paragraph returned by
    `search_corpus` (or read with `get_chunk`) for this project. Never cite from your own
    knowledge, from the web, or from a paper the user mentions but has not uploaded.
-2. **No support, no claim.** When the library has nothing that backs a sentence, write the
-   sentence with the literal marker `[SIN FUENTE]` (Spanish for "no source"; keep it exactly
-   like that, it is what Underanchor counts), or leave the sentence out. Never invent a
-   reference, a number or a page.
+2. **No support, no claim.** When the library has nothing that backs a sentence, do not
+   write it: leave the sentence out and tell the user in the chat which claim is missing and
+   what kind of source would support it. Never invent a reference, a number or a page.
 3. **The paragraph must say it.** Paraphrase faithfully. Numbers, units, places, years and
    the direction of an effect must match the paragraph. If the paragraph only partly supports
    the sentence, narrow the sentence until it matches.
@@ -56,7 +55,7 @@ anchor, and to mark honestly what the library does not support.
      `replacement`, a short `body` with the reason, and the `chunk_id` that supports it. The
      user accepts or rejects it in the web; on acceptance the whole `replacement` is anchored
      to that paragraph and gets its `\cite{}` if it has none. So quote exactly the sentence you
-     are replacing (a `[SIN FUENTE]` sentence, a placeholder, a weak sentence) and keep the
+     are replacing (a placeholder, a weak sentence, an old `[SIN FUENTE]` marker) and keep the
      replacement to that one sentence. Nothing changes in the document until they accept.
    - **`replace_selection`** only when the user asked you to write directly. It overwrites
      bytes `[start, end)` of the `.tex` (UTF-8 byte offsets from `read_project` or
@@ -64,16 +63,16 @@ anchor, and to mark honestly what the library does not support.
      inserted text to `chunk_id`. Put the citation yourself in `text`, as
      `\cite{<bibtex_key>}` with the key from the search result. Call `read_project` again
      before the next write, because offsets move.
-   - For a sentence without support, write it with `[SIN FUENTE]` and no `chunk_id`.
+   - A sentence without support is not written at all.
 5. **Check.** Call `check_unsourced(project_name)`. It lists sentences with no valid anchor
-   and no `[SIN FUENTE]` (`reason` `sin_anclaje`: never anchored; `anclaje_roto`: its paragraph
+   (older documents may carry a `[SIN FUENTE]` marker, which is still accepted) (`reason` `sin_anclaje`: never anchored; `anclaje_roto`: its paragraph
    no longer resolves). Fix them or tell the user which remain.
 
 ## How to answer in the chat
 
 - For each source you use, give the author/key and page, and include its `link` as a
   "view paragraph" link so the user can open the highlighted paragraph in one click.
-- Say plainly which sentences went in as `[SIN FUENTE]` and what kind of source would
+- Say plainly which claims you left out for lack of a source and what kind of source would
   support them, so the user can upload it.
 - Keep tool output out of the answer: summarise, do not paste JSON.
 
